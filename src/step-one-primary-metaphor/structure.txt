@@ -1,0 +1,18 @@
+step-one-primary-metaphor/
+├── resources/
+│   ├── metaforas_conocidas.json
+│   └── concreteness_lexicon.csv
+├── models/
+│   ├── base.py
+│   ├── hitz_deberta.py
+│   ├── lwachowiak_xlmr.py
+│   ├── openai_gpt.py
+│   ├── gemini.py
+│   ├── llama_api.py
+│   ├── mistral_api.py
+├── preprocessing.py
+├── postprocessing.py
+├── novelty_classifier.py
+├── pipeline.py
+├── config.py
+└── requirements.txt
