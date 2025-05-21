@@ -1,0 +1,24 @@
+# Entornos virtuales
+melt-env/
+
+# Archivos de entorno
+.env
+.env.local
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Editor/IDE
+.vscode/
+.idea/
+
+# Sistemas operativos
+.DS_Store       (Mac)
+Thumbs.db       (Windows)
+
+# Archivos de apoyo
+src\step-one-primary-metaphor\workflow.txt
+src\step-one-primary-metaphor\structure.txt
