@@ -1,0 +1,16 @@
+# 1. Crear entorno
+python -m venv .venv
+
+# 2. Activar
+source .melt-env/bin/activate  # Linux/Git Bash
+# o
+.\.venv\Scripts\activate   # PowerShell
+
+# 3. Instalar paquetes
+pip install -r requirements.txt
+
+# 4. Desactivar al terminar
+deactivate
+
+# 5. Correr el código
+python pipeline.py < input.txt > resultados.json

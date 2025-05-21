@@ -1,0 +1,4 @@
+spacy
+transformers
+requests
+torch>=1.12.0
