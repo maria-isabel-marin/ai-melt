@@ -23,6 +23,9 @@ Thumbs.db       (Windows)
 src/step-one-primary-metaphor/workflow.txt
 src/step-one-primary-metaphor/structure.txt
 src/step-one-primary-metaphor/salida.json
+src/step-one-primary-metaphor/resultados.json
+src/step-one-primary-metaphor/resultados.csv
+src/step-one-primary-metaphor/test.py
 
 # Config
 src/step-one-primary-metaphor/config.py

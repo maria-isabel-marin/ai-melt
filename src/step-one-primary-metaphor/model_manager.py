@@ -1,7 +1,7 @@
 from config import active_models, model_configs
 from models.hitz_deberta import HiTZDeBERTaModel
 from models.lwachowiak_xlmr import LwachowiakXLMRModel
-#from models.openai_gpt import OpenAIGPTModel
+from models.openai_gpt import OpenAIGPTModel
 from models.gemini import GeminiModel
 from models.llama_api import LLaMAModel
 from models.mistral_api import MistralAPIModel
@@ -18,7 +18,7 @@ class ModelManager:
             elif model_name == "lwachowiak_xlmr":
                 self.models.append(LwachowiakXLMRModel(cfg))
             elif model_name == "openai_gpt":
-                self.models.append(LLaMAModel(cfg))
+                self.models.append(OpenAIGPTModel(cfg))
             elif model_name == "gemini":
                 self.models.append(GeminiModel(cfg))
             elif model_name == "llama_api":

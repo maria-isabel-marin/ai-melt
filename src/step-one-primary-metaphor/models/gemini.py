@@ -14,7 +14,7 @@ class GeminiModel(BaseModel):
         self.model = config["model"]
 
     def detect_metaphors(self, sentences):
-        prompt = (
+        '''prompt = (
             "Detecta todas las expresiones metafóricas en las siguientes oraciones. "
             "Devuelve una lista JSON con cada expresión encontrada, incluyendo por cada expresión: 1) el texto exacto de la expresión, "
             "2) la palabra con la carga metafórica en la expresión, 3) el dominio fuente, 4) el dominio meta y 5) la metáfora conceptual, de acuerdo a "
@@ -33,6 +33,36 @@ class GeminiModel(BaseModel):
             "]\n\n"
             "Ahora, procesa el siguiente texto:\n"
             f"Texto:\n{chr(10).join(sentences)}"
+        )'''
+
+        prompt = (
+            "You are a linguist specialized in Conceptual Metaphor Theory (Lakoff, Johnson, Kövecses). "
+            "Your task is to identify metaphorical expressions in the following text written in Spanish, and describe each one in a strict JSON format.\n\n"
+            "Instructions:\n"
+            "For each metaphor you detect, return an object with:\n"
+            "1. \"expresion\": the exact Spanish fragment where the metaphor occurs (keep original wording).\n"
+            "2. \"palabra\": the metaphor-triggering word (in Spanish).\n"
+            "3. \"dominio_meta\": the target domain in UPPERCASE, including determiners (e.g., LOS ARGUMENTOS).\n"
+            "4. \"dominio_fuente\": the source domain in UPPERCASE, including determiners if present.\n"
+            "5. \"metafora_conceptual\": the exact concatenation: DOMINIO_META + ' ES ' or 'SON' + DOMINIO_FUENTE (verbatim, all uppercase).\n\n"
+            "IMPORTANT:\n"
+            "- Do not rephrase any of the domains.\n"
+            "- Do not remove or alter determiners (EL, LA, LOS, LAS, etc.).\n"
+            "- Output must be in Spanish, even though these instructions are in English.\n"
+            "- Return only a valid JSON list using double quotes.\n\n"
+            "Example:\n"
+            "Input:\nCristina derrumbó todos los argumentos de la oposición respecto al déficit fiscal\n"
+            "Expected output:\n"
+            "[\n"
+            "  {\n"
+            "    \"expresion\": \"Cristina derrumbó todos los argumentos\",\n"
+            "    \"palabra\": \"derrumbó\",\n"
+            "    \"dominio_meta\": \"LOS ARGUMENTOS\",\n"
+            "    \"dominio_fuente\": \"EDIFICIOS\",\n"
+            "    \"metafora_conceptual\": \"LOS ARGUMENTOS ES EDIFICIOS\"\n"
+            "  }\n"
+            "]\n\n"
+            f"Now analyze the following Spanish text:\nTexto:\n{chr(10).join(sentences)}"
         )
 
         response = requests.post(
@@ -60,10 +90,13 @@ class GeminiModel(BaseModel):
 
             results = []
             for metaphor in metaphor_list:
-                if isinstance(metaphor, dict) and 'texto_exacto_expresion' in metaphor:
+                if isinstance(metaphor, dict):
                     results.append({
-                        "frase": metaphor['texto_exacto_expresion'],
-                        "expresion": metaphor['texto_exacto_expresion']
+                        "expresion": metaphor.get('expresion'),
+                        "palabra": metaphor.get('palabra'),
+                        "dominio_meta": metaphor.get('dominio_meta'),
+                        "dominio_fuente": metaphor.get('dominio_fuente'),
+                        "metafora_conceptual": metaphor.get('metafora_conceptual')
                     })
             return results
 

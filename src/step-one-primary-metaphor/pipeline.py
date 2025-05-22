@@ -1,5 +1,6 @@
 import sys
 import json
+import csv
 import logging
 from preprocessing import Preprocessor
 from postprocessing import Postprocessor
@@ -20,7 +21,7 @@ class MetaphorPipeline:
     def __init__(self):
         self.pre = Preprocessor()
         self.manager = ModelManager()
-        self.post = Postprocessor()
+        # self.post = Postprocessor()
         self.classifier = NoveltyClassifier()
 
     def run(self, text: str) -> list[dict]:
@@ -35,15 +36,22 @@ class MetaphorPipeline:
         results = []
         for m in raw_metaphors:
             if isinstance(m, dict):
-                frase = m.get("frase") or ""
-                expresion = m.get("expresion") or ""
-                if frase and expresion:
-                    expr = self.post.expand_expression(frase, {"start": 0, "end": len(expresion), "word": expresion})
-                    tipo = self.classifier.label(expr)
+                expresion = m.get('expresion') or ""
+                palabra = m.get('palabra') or ""
+                dominio_fuente = m.get('dominio_meta') or ""
+                dominio_meta = m.get('dominio_fuente') or ""
+                metafora = m.get('metafora_conceptual') or ""
+
+                if metafora:
+                    #expr = self.post.expand_expression(frase, {"start": 0, "end": len(expresion), "word": expresion})
+                    tipo = self.classifier.label(metafora)
                     results.append({
-                        "expresion": expr,
-                        "tipo": tipo,
-                        "frase": frase
+                        "expresion": expresion,
+                        "palabra" : palabra,
+                        "dominio_fuente" : dominio_fuente,
+                        "dominio_meta" : dominio_meta,
+                        "metafora" : metafora,
+                        "tipo": tipo
                     })
             else:
                 logger.warning(f"Valor inesperado recibido: {m}")
@@ -55,4 +63,17 @@ if __name__ == "__main__":
     text = raw.decode('utf-8', 'ignore')
     pipe = MetaphorPipeline()
     results = pipe.run(text)
+    
+    # Guardar en JSON
+    with open("resultados.json", "w", encoding="utf-8") as f_json:
+        json.dump(results, f_json, ensure_ascii=False, indent=2)
+
+    # Guardar en CSV (solo si hay resultados)
+    if results:
+        with open("resultados.csv", "w", encoding="utf-8", newline="") as f_csv:
+            writer = csv.DictWriter(f_csv, fieldnames=results[0].keys())
+            writer.writeheader()
+            writer.writerows(results)
+
+    # Imprimir por consola también
     print(json.dumps(results, ensure_ascii=False, indent=2))
