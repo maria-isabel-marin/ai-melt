@@ -76,7 +76,7 @@ Each can be configured and activated via the `config.py` file.
 
 If you use **AI-MELT** in academic work, you **must cite** the following source:
 
-> Marín-Morales, M.I. (2025).  
+> Marín-Morales, M.I., Valdivia, P (2025).  
 > *AI-MELT: A pipeline for metaphor detection and narrative analysis* [Computer software].  
 > GitHub. https://github.com/maria-isabel-marin/ai-melt  
 > (Work in progress as part of the Ph.D. dissertation: *“Can an AI-enabled system help us understand how cultural narratives are configured, and how do they prime social mobilization?”*)
@@ -89,6 +89,7 @@ María Isabel Marín
 Ph.D. Candidate – Graduate School for the Humanities  
 University of Groningen  
 m.i.marin.morales@rug.nl
+Supervised by Prof. Dr. Pablo Valdivia
 
 ---
 
