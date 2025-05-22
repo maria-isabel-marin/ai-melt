@@ -22,6 +22,7 @@ Thumbs.db       (Windows)
 # Archivos de apoyo
 src/step-one-primary-metaphor/workflow.txt
 src/step-one-primary-metaphor/structure.txt
+src/step-one-primary-metaphor/salida.json
 
 # Config
 src/step-one-primary-metaphor/config.py
