@@ -1,6 +1,6 @@
 import json
 import requests
-from config import environment
+from ai_melt_core.config import environment
 
 class NoveltyClassifier:
     """

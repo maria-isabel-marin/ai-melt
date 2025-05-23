@@ -1,11 +1,14 @@
-from config import active_models, model_configs
-from models.hitz_deberta import HiTZDeBERTaModel
-from models.lwachowiak_xlmr import LwachowiakXLMRModel
-from models.openai_gpt import OpenAIGPTModel
-from models.gemini import GeminiModel
-from models.llama_api import LLaMAModel
-from models.mistral_api import MistralAPIModel
-from models.llama_quant import LLaMAQuantModel
+from ai_melt_core.config import active_models, model_configs
+
+# Importa cada clase de modelo desde el subpaquete ai_melt_core.models
+from ai_melt_core.models.hitz_deberta import HiTZDeBERTaModel
+from ai_melt_core.models.lwachowiak_xlmr import LwachowiakXLMRModel
+from ai_melt_core.models.gemini import GeminiModel
+from ai_melt_core.models.llama_api import LLaMAModel
+from ai_melt_core.models.llama_quant import LLaMAQuantModel
+from ai_melt_core.models.mistral_api import MistralAPIModel
+from ai_melt_core.models.openai_gpt import OpenAIGPTModel
+
 import json
 
 class ModelManager:
