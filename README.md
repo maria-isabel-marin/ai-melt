@@ -88,7 +88,7 @@ If you use **AI-MELT** in academic work, you **must cite** the following source:
 María Isabel Marín  
 Ph.D. Candidate – Graduate School for the Humanities  
 University of Groningen  
-m.i.marin.morales@rug.nl
+m.i.marin.morales@rug.nl    
 Supervised by Prof. Dr. Pablo Valdivia
 
 ---
