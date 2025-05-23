@@ -1,5 +1,5 @@
 from transformers import pipeline
-from config import environment
+from ai_melt_core.config import environment
 from typing import List, Dict, Any
 
 class MetaphorDetector:

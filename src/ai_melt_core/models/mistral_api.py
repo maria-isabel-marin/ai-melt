@@ -1,8 +1,8 @@
 import os
 import requests
-from models.base import BaseModel
+from ai_melt_core.models.base import BaseModel
 
-class LLaMAModel(BaseModel):
+class MistralAPIModel(BaseModel):
     def __init__(self, config):
         super().__init__(config)
         self.api_url = config["api_url"]
@@ -10,12 +10,12 @@ class LLaMAModel(BaseModel):
 
     def detect_metaphors(self, sentences):
         prompt = (
-            "Lista todas las metáforas presentes en las siguientes frases, indicando la frase y la expresión metafórica.\n"
-            f"Frases:\n{chr(10).join(sentences)}"
+            "Identifica y devuelve en JSON todas las expresiones metafóricas en estas oraciones:\n"
+            f"\n{chr(10).join(sentences)}"
         )
         response = requests.post(
             self.api_url,
             headers={"Authorization": f"Bearer {self.api_key}"},
-            json={"prompt": prompt, "max_tokens": 1024}
+            json={"prompt": prompt, "temperature": 0.3}
         )
         return response.json()

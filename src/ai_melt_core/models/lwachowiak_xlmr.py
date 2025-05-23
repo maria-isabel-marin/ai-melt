@@ -1,5 +1,5 @@
 from transformers import pipeline
-from models.base import BaseModel
+from ai_melt_core.models.base import BaseModel
 
 class LwachowiakXLMRModel(BaseModel):
     def __init__(self, config):

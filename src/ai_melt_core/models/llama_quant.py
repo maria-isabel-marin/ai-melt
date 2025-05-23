@@ -1,6 +1,6 @@
 import torch
 from transformers import AutoTokenizer, AutoModelForCausalLM
-from models.base import BaseModel
+from ai_melt_core.models.base import BaseModel
 
 class LLaMAQuantModel(BaseModel):
     def __init__(self, config):

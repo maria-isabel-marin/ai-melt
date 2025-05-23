@@ -3,14 +3,16 @@ import json
 import requests
 import logging
 import re
-from models.base import BaseModel
+from ai_melt_core.models.base import BaseModel
+from dotenv import load_dotenv
+load_dotenv()
 
 logger = logging.getLogger(__name__)
 
 class GeminiModel(BaseModel):
     def __init__(self, config):
         super().__init__(config)
-        self.api_key = os.getenv(config["api_key_env"])
+        self.api_key = os.getenv(config["api_key_env"]) # config["api_key_env"] == "GOOGLE_API_KEY"
         self.model = config["model"]
 
     def detect_metaphors(self, sentences):

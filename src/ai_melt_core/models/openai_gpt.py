@@ -2,7 +2,9 @@ import os
 import json
 import logging
 from openai import OpenAI
-from models.base import BaseModel
+from ai_melt_core.models.base import BaseModel
+from dotenv import load_dotenv
+load_dotenv()
 
 logger = logging.getLogger(__name__)
 
@@ -10,7 +12,7 @@ class OpenAIGPTModel(BaseModel):
     def __init__(self, config):
         super().__init__(config)
         self.model = config.get("model", "gpt-4.1-nano")
-        self.api_key = os.getenv(config["api_key_env"])
+        self.api_key = os.getenv(config["api_key_env"]) # config["api_key_env"] == "OPENAI_API_KEY"
         self.client = OpenAI(api_key=self.api_key)
 
     def detect_metaphors(self, sentences):
