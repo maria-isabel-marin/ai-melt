@@ -28,7 +28,7 @@ class MetaphorPipeline:
     def __init__(self):
         self.pre = Preprocessor()
         self.manager = ModelManager()
-        self.post = Postprocessor()
+        #self.post = Postprocessor()
         self.classifier = NoveltyClassifier()
 
     def run(self, text: str) -> list[dict]:

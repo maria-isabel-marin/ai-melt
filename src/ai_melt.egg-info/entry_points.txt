@@ -1,2 +1,0 @@
-[console_scripts]
-ai-melt-step1 = step_one_primary_metaphor.cli:main

@@ -7,8 +7,14 @@ class NoveltyClassifier:
     Clasifica las expresiones como convencionales o novedosas.
     """
     def __init__(self):
-        with open(environment['METAFORAS_KNOWN_PATH'], 'r', encoding='utf-8') as f:
-            self.known = set(json.load(f))
+        # with open(environment['METAFORAS_KNOWN_PATH'], 'r', encoding='utf-8') as f:
+        #self.known = set(json.load(f))
+        self.known = set([
+            "perder la cabeza",
+            "romper el hielo",
+            "lluvia de ideas",
+            "abrir puertas",
+            "ganar terreno"        ])
         self.threshold = environment['WEB_FREQ_THRESHOLD']
 
     def is_conventional(self, expression: str) -> bool:

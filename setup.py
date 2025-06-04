@@ -16,6 +16,10 @@ setup(
         "requests",
         "transformers",
         "spacy",
+        "torch>=2.0.0",
+        "fastapi>=0.95.0",    # si tu servicio usa FastAPI
+        "uvicorn[standard]>=0.22.0",
+        "pydantic>=1.10.0",   # para esquemas Pydantic
     ],
     entry_points={
     "console_scripts": [

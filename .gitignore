@@ -31,3 +31,5 @@ src/ai_melt_core/config.py
 
 # env
 .env
+
+src/ai_melt.egg-info/
